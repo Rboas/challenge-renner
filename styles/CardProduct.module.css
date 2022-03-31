@@ -42,7 +42,7 @@
 }
 
 .button {
-  background-color: #e0252b;
+  background-color: #00AE7C;
   border: 1px solid transparent;
   border-radius: 4px;
   color: #fff;
@@ -56,7 +56,7 @@
 }
 
 .button:hover {
-  background-color: #d7191f;
+  background-color: #029168;
 }
 
 .cardFooter {
