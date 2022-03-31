@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { MdShoppingCart, MdPerson } from 'react-icons/md';
+import { MdShoppingCart } from 'react-icons/md';
 import styles from '../styles/Header.module.css'
 
 const Header = () => {
