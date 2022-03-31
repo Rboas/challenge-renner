@@ -1,0 +1,22 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
+  height: 80px;
+}
+
+.content {
+  min-width: 800px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userContent {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
