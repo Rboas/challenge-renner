@@ -14,9 +14,7 @@ export interface CardProductProps {
 const CardProduct = (props: CardProductProps) => {
   return (
     <div className={styles.card}>
-      <Link href={`/product/${props.id}`}>
-        <Image src={props.img} alt={props.name} width={292} height={338} />
-      </Link>
+      <Image src={props.img} alt={props.name} width={292} height={338} />
       <div className={styles.info}>
         <h2>{props.name}</h2>
         <div className={styles.cardFooter}>

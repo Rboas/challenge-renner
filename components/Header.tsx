@@ -7,9 +7,8 @@ const Header = () => {
   return (
     <div className={styles.navBar}>
       <div className={styles.content}>
-        <Link href="/">
+      
           <Image className={styles.logo} src="/logo_red3.webp" alt="Logo" width={176} height={36} />
-        </Link>
         <div className={styles.userContent}>
             <span>Entre ou cadastre-se</span>
             <MdShoppingCart size={22} />
