@@ -79,3 +79,8 @@
   font-size: 12px;
   margin-top: 20px;
 }
+
+.soldOff {
+  color: #f00;
+  text-align: right;
+}

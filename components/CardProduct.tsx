@@ -4,11 +4,12 @@ import { MdShoppingCart } from 'react-icons/md';
 import styles from '../styles/CardProduct.module.css'
 
 export interface CardProductProps {
-  id: number;
+  id: string;
   name: string;
   img: string;
   value: string;
   installment: string;
+  stock: number;
 }
 
 const CardProduct = (props: CardProductProps) => {
@@ -23,10 +24,15 @@ const CardProduct = (props: CardProductProps) => {
             <span>{props.installment}</span>
           </div>
           <Link href={`/product/${props.id}`}>
-            <button className={styles.button}>
-              Comprar
-              <MdShoppingCart size={22}/>
-            </button>
+          {props.stock === 0 
+            ? 
+              <p className={styles.soldOff}>Produto esgotado</p>
+            :
+              <button type="button" className={styles.button}>
+                Comprar
+                <MdShoppingCart size={22}/>
+              </button>
+          }
           </Link>
         </div>
       </div>

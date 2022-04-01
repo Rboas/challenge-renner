@@ -1,27 +1,54 @@
 import Image from "next/image"
+import { useRouter } from "next/router";
 import { MdShoppingCart } from "react-icons/md"
+import useSWR from "swr";
 import styles from '../../styles/Product.module.css'
 
+const fetcher = async (url: string) => {
+  const res = await fetch(url)
+  const data = await res.json()
+
+  if (res.status !== 200) {
+    throw new Error(data.message)
+  }
+  console.log(data)
+  return data
+}
+
 const Product = () => {
+  const { query } = useRouter()
+  const { data, error } = useSWR(
+    () => query.id && `/api/product/${query.id}`,
+    fetcher
+  )
+
+  if (error) return <div>{error.message}</div>
+  if (!data) return <div>Loading...</div>
+  
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.image}>
-          <Image src="/12.webp" alt="banner" width={'100%'} height={'100%'} layout="responsive" />
+          <Image src={data.img} alt="banner" width={'100%'} height={'100%'} layout="responsive" />
         </div>
         <div className={styles.info}>
-          <h2 className={styles.title}>Jaqueta Pesada</h2>
+          <h2 className={styles.title}>{data.name}</h2>
           <div className={styles.detail}>
           Calça jogger em veludo. O modelo jogger é um clássico, que cada vez mais, ganha novos adeptos e modelos de calças. Seu tecido em veludo dá um ar muito charmoso à peça, dando um toque especial à roupa que é só dela.
           </div>  
           <p className={styles.price}>
-            R$ 159,90
-            <span>10x de R$ 32,99 s/juros</span>
+            R$ {data.value}
+            <span>{data.installment}s</span>
           </p>
-          <button className={styles.button}>
-            Comprar
-            <MdShoppingCart size={22}/>
-          </button>
+          {data.stock === 0 
+            ? 
+              <p className={styles.soldOff}>Produto esgotado</p>
+            :
+              <button type="button" className={styles.button}>
+                Comprar
+                <MdShoppingCart size={22}/>
+              </button>
+          }
         </div>
       </div>
       <div className={styles.description}>
